@@ -1,0 +1,87 @@
+body{
+background-color: #f7bfbf;
+margin: 0;
+}
+.main-head{
+    background-color: #f7bfbf;
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    margin-top: 5rem;
+
+
+    
+}
+.container{
+    width: 40%;
+    margin: auto;
+    
+}
+
+.section input{
+    width: 80%;
+    height: 5rem;
+    background-color:#ff9a9a;
+    border: 1rem solid #ff9a9a;
+    box-sizing:border-box ;
+    margin-top: 2rem;
+}
+
+.section {
+    background-color:#ff9a9a;
+    box-shadow: 0 4px 6px rgb(223, 118, 136);
+}
+
+.todo-list{
+    border-radius: 1rem;
+    padding: 0;
+
+}
+
+.todo-list .todo-item{
+    list-style: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #ff9a9a;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgb(247, 107, 130);
+    display: flex;
+    align-items: center;
+}
+
+p{
+    text-align: right;
+    flex: 1;
+    align-items: center;
+    
+}
+
+
+.todo:hover{
+    transform: scale(1.1);
+}
+button{
+    background-color: #ff9a9a;
+    box-shadow: 0 4px 6px rgb(247, 107, 130);
+    margin-left: 5rem;
+    border: none;
+
+}
+
+.completed{
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.filter{
+    color: aquamarine;
+}
+
+select{
+    align-items: center;
+    margin-left: 45%;
+    background-color: #f398a4;
+    border-style: none;
+    margin-top: 1rem;
+}
+
