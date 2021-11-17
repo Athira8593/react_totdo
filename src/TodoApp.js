@@ -9,10 +9,9 @@ function TodoApp() {
     const initialState = JSON.parse(localStorage.getItem("todos")) || [];
     const [input, setInput] = useState('');
     const [todos, setTodos] = useState(initialState);
+    const [status, setStatus] = useState("all");
+    const [filteredTodo, setfilteredTodo] = useState([]);
     const [EditTodo, setEditTodo] = useState(null);
-
-
-  
     const deleteHandler = ({id}) => {
         setTodos(todos.filter((todo) => todo.id !== id))
     }
@@ -28,7 +27,23 @@ function TodoApp() {
         localStorage.setItem("todos", JSON.stringify(todos));
     }, [todos]);
 
+    useEffect(()=> {
+        filterHandler();
+    }, [todos,status]);
 
+    const filterHandler = ()=>{
+        switch(status){
+        case 'Completed':
+            setfilteredTodo(todos.filter(todo => todo.completed === true));
+            break;
+        case 'active':
+            setfilteredTodo(todos.filter(todo => todo.completed === false));
+            break;
+        default:
+            setfilteredTodo(todos);
+            break;
+        }
+    };
     
     const completeHandler = (obj)=>{
         setTodos(
@@ -43,16 +58,13 @@ function TodoApp() {
         )
     }
   
-
-    
     return (
             <div className="container">
                 <div className="main-head"><h1>TODO APP</h1></div>
-  
-                
-
+                <div className="filter">
+        
+            </div>
                 <div className="section">
-
                     <Form 
                     input = {input}
                     setInput = {setInput}
@@ -60,15 +72,15 @@ function TodoApp() {
                     setTodos= {setTodos}
                     EditTodo={EditTodo}
                     setEditTodo={setEditTodo}
+                    setStatus = {setStatus}
                     />
-                    
                 </div>
-         
-            {todos.map((obj) => {
+           
+
+            {filteredTodo.map((obj) => {
                 if (obj.text) {
                     return(
                         <div className="todo">
-                           
                         <ul className="todo-list">
                             <li className={`todo-item ${obj.completed ? "completed" : ""}`}>  {obj.text}<p> <button onClick={()=> completeHandler(obj)} >  <i className=" fa fa-check-circle"></i></button></p> 
                             <button ><i onClick={()=> editHandler(obj)}  className="fa fa-pencil"></i> </button>
@@ -78,7 +90,7 @@ function TodoApp() {
                     )}
                 return null
             })}                   
-            </div>
+        </div>
     );
 }
 export default TodoApp

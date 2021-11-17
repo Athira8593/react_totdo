@@ -28,6 +28,11 @@ const Form = ({input, setInput, todos, setTodos, EditTodo, setEditTodo,setStatus
 
 
 
+    const statusHandler = (e)=>{
+        setStatus(e.target.value);
+       
+        
+    }
     const onFormSubmit=(event)=>{
         event.preventDefault();
         if (!EditTodo){
@@ -40,7 +45,7 @@ const Form = ({input, setInput, todos, setTodos, EditTodo, setEditTodo,setStatus
     
     return(
         <form onSubmit={onFormSubmit}>
-            <select>
+            <select onChange={statusHandler}>
                 <option value="all">All</option>
                 <option value="active">Active</option>
                 <option value="completed">Completed</option>
