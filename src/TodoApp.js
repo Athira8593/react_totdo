@@ -16,8 +16,6 @@ function TodoApp() {
         setTodos(todos.filter((todo) => todo.id !== id))
     }
 
-
-
     const editHandler =({id})=>{
         const findTodo = todos.find((todo)=> todo.id === id);
         setEditTodo(findTodo);
@@ -28,12 +26,13 @@ function TodoApp() {
     }, [todos]);
 
     useEffect(()=> {
+        
         filterHandler();
     }, [todos,status]);
 
     const filterHandler = ()=>{
         switch(status){
-        case 'Completed':
+        case 'completed':
             setfilteredTodo(todos.filter(todo => todo.completed === true));
             break;
         case 'active':
@@ -43,7 +42,12 @@ function TodoApp() {
             setfilteredTodo(todos);
             break;
         }
-    };
+    } ;
+
+    const statusHandler = (e)=>{
+        setStatus(e.target.value);
+    }
+
     
     const completeHandler = (obj)=>{
         setTodos(
@@ -62,7 +66,12 @@ function TodoApp() {
             <div className="container">
                 <div className="main-head"><h1>TODO APP</h1></div>
                 <div className="filter">
-        
+            <select className="status" onChange={statusHandler}>
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="completed">Completed</option>
+            </select>
+
             </div>
                 <div className="section">
                     <Form 
@@ -75,7 +84,6 @@ function TodoApp() {
                     setStatus = {setStatus}
                     />
                 </div>
-           
 
             {filteredTodo.map((obj) => {
                 if (obj.text) {
