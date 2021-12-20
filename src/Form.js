@@ -10,7 +10,7 @@ const Form = ({ input, setInput, todos, setTodos, EditTodo, setEditTodo }) => {
         setTodos(newTodo);
         setEditTodo("");
     };
-
+    
     useEffect(() => {
         if (EditTodo) {
             setInput(EditTodo.text)
@@ -35,11 +35,11 @@ const Form = ({ input, setInput, todos, setTodos, EditTodo, setEditTodo }) => {
     }
 
     return (
-        <form onSubmit={onFormSubmit}>
-            <div className="form-div">
+        <form onSubmit={onFormSubmit} >
+            <div className="form-div ">
                 <input type="text" placeholder="Enter a Task..."
                     value={input} required onChange={onInputChange}></input>
-                <button type="text"><i className="p fa fa-plus "></i></button>
+                <button style={{marginBottom:'1rem'}} type="text"><i className="p fa fa-plus"></i></button>
             </div>
         </form>
     )

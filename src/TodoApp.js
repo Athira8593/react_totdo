@@ -26,8 +26,7 @@ function TodoApp() {
     }, [todos]);
 
     useEffect(()=> {
-        
-        filterHandler();
+        filterHandler()  // eslint-disable-next-line 
     }, [todos,status]);
 
     const filterHandler = ()=>{
@@ -47,7 +46,6 @@ function TodoApp() {
     const statusHandler = (e)=>{
         setStatus(e.target.value);
     }
-
     
     const completeHandler = (obj)=>{
         setTodos(
@@ -55,24 +53,22 @@ function TodoApp() {
                 if (item.id === obj.id){ 
                     console.log(item.completed)
                     return {...item, completed: !item.completed}
-                    
                 }
                 return item;
             })
-        )
-    }
+        )}
   
     return (
             <div className="container">
-                <div className="main-head"><h1>TODO APP</h1></div>
+                {/* <div className="main-head"><h1>TODO APP</h1></div> */}
                 <div className="filter">
-            <select className="status" onChange={statusHandler}>
-                <option value="all">All</option>
-                <option value="active">Active</option>
-                <option value="completed">Completed</option>
-            </select>
+                    <select className="status" onChange={statusHandler}>
+                        <option value="all">All</option>
+                        <option value="active">Active</option>
+                        <option value="completed">Completed</option>
+                    </select>
 
-            </div>
+                </div>
                 <div className="section">
                     <Form 
                     input = {input}
@@ -85,10 +81,10 @@ function TodoApp() {
                     />
                 </div>
 
-            {filteredTodo.map((obj) => {
+            {filteredTodo.map((obj,index) => {
                 if (obj.text) {
                     return(
-                        <div className="todo">
+                        <div  key={index} className="todo">
                         <ul className="todo-list">
                             <li className={`todo-item ${obj.completed ? "completed" : ""}`}>  {obj.text}<p> <button onClick={()=> completeHandler(obj)} >  <i className=" fa fa-check-circle"></i></button></p> 
                             <button ><i onClick={()=> editHandler(obj)}  className="fa fa-pencil"></i> </button>
